@@ -620,3 +620,25 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     padding-bottom: 10px !important;
     box-sizing: border-box !important;
 }
+
+/* ============================================================
+   Barre d'onglets : forcer le fond à matcher l'éditeur
+   ------------------------------------------------------------
+   Après mise à jour VS Code, la variable
+   --vscode-tab-inactiveBackground (et le fond natif de la barre)
+   ont changé et ne correspondent plus au fond de la fenêtre.
+   On force le fond de la barre et des onglets inactifs sur la
+   couleur de l'éditeur pour retrouver l'aspect d'origine.
+   ============================================================ */
+
+/* Fond de la barre d'onglets (strip complet) */
+.monaco-workbench .part.editor>.content .editor-group-container>.title,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-and-actions-container,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container {
+    background-color: var(--vscode-editor-background, #171b26) !important;
+}
+
+/* Onglets inactifs : fond aligné sur l'éditeur */
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab:not(.active) {
+    background-color: var(--vscode-editor-background, #171b26) !important;
+}

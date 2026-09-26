@@ -2,7 +2,7 @@
   "name": "vscode-modernized-v2",
   "displayName": "VS Code Modernized V2",
   "description": "A modern UI redesign for VS Code that brings customizable spacing, rounded corners, and a refined dark theme.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "publisher": "Yohan-Janolin",
   "engines": {
     "vscode": "^1.75.0"

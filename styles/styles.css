@@ -72,7 +72,7 @@
     border-radius: 0 !important;
 }
 
-/* NOTE : sélecteur natif malformé (trailing '>') — conservé tel quel, effet inconnu */
+/* NOTE : sélecteur natif malformé (trailing '>') — conservé tel quel */
 .monaco-workbench .part.editor>.content .editor-group-container> {
     border: 2px solid var(--vscode-editorGroup-border, #243443) !important;
 }
@@ -495,8 +495,6 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
     mask-position: center !important;
     background-color: #e08a3c !important;
 }
-
-/* Conteneur global : fond, arrondi */
 .monaco-workbench .pane-composite-part>.header-or-footer {
     background: var(--vscode-sideBar-background, #171b26) !important;
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
@@ -622,23 +620,66 @@ div.monaco-workbench>div:has(iframe.webview.ready) {
 }
 
 /* ============================================================
-   Barre d'onglets : forcer le fond à matcher l'éditeur
+   Barre d'onglets — fond "shell" + suppression des bordures
    ------------------------------------------------------------
-   Après mise à jour VS Code, la variable
-   --vscode-tab-inactiveBackground (et le fond natif de la barre)
-   ont changé et ne correspondent plus au fond de la fenêtre.
-   On force le fond de la barre et des onglets inactifs sur la
-   couleur de l'éditeur pour retrouver l'aspect d'origine.
+   Depuis VS Code 1.139, la barre d'onglets reçoit :
+     • un fond légèrement différent de l'éditeur
+     • une bordure de 1px sous les onglets
+   On aligne le fond sur la couleur "shell" (#252a38) et on
+   neutralise toutes les variables et pseudo-éléments qui
+   dessinent cette bordure.
    ============================================================ */
 
-/* Fond de la barre d'onglets (strip complet) */
-.monaco-workbench .part.editor>.content .editor-group-container>.title,
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-and-actions-container,
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container {
-    background-color: var(--vscode-editor-background, #171b26) !important;
+/* Variables VS Code : forcer les fonds sur la couleur shell */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container.tabs-border-bottom {
+    --vscode-editorGroupHeader-tabsBackground: #252a38 !important;
+    --vscode-tab-inactiveBackground: #252a38 !important;
+    --title-border-bottom-color: transparent !important;
+    --title-border-top-color: transparent !important;
+    --tab-s-border-bottom-color: transparent !important;
+    --tab-s-border-top-color: transparent !important;
+    --tab-border-bottom-color: transparent !important;
+    --tab-border-top-color: transparent !important;
+    --vscode-editorGroup-border: transparent !important;
+    --vscode-editorGroupHeader-tabsBorder: transparent !important;
 }
 
-/* Onglets inactifs : fond aligné sur l'éditeur */
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab:not(.active) {
-    background-color: var(--vscode-editor-background, #171b26) !important;
+/* Fonds : titre, conteneur d'onglets, onglets inactifs */
+.monaco-workbench .part.editor > .content .editor-group-container > .title,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container,
+.modern-ui-tabs.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container {
+    background-color: #252a38 !important;
+    background-image: none !important;
+}
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab:not(.active) {
+    background-color: #252a38 !important;
+}
+
+/* Suppression des bordures et ombres sur toute la chaîne */
+.monaco-workbench .part.editor > .content .editor-group-container > .title,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container.tabs-border-bottom,
+.monaco-workbench .part.editor > .content .editor-group-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .editor-container {
+    border-top: 0 none !important;
+    border-bottom: 0 none !important;
+    border-top-width: 0 !important;
+    border-bottom-width: 0 !important;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Pseudo-éléments décoratifs : neutralisés */
+.monaco-workbench .part.editor > .content .editor-group-container > .title::before,
+.monaco-workbench .part.editor > .content .editor-group-container > .title::after,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container::before,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container::after,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container::before,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container::after {
+    content: none !important;
+    display: none !important;
 }

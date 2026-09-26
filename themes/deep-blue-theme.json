@@ -53,7 +53,10 @@
     "terminal.inactiveSelectionBackground": "#3a3d41",
     "titleBar.activeBackground": "#252a38",
     "titleBar.inactiveBackground": "#252a38",
-    "widget.border": "#303031"
+    "widget.border": "#303031",
+    "editorGroup.border": "#171b26",
+    "editorGroupHeader.border": "#171b26",
+    "editorGroupHeader.tabsBorder": "#171b26"
   },
   "tokenColors": [
     {

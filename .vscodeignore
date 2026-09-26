@@ -12,6 +12,7 @@ webpack.config.js
 scripts/**
 assets/**
 dist/**
+**/*.bak
 
 !assets/icon.png
 !out/extension.js

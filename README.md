@@ -2,7 +2,7 @@
 
 **Based on the great work of Sukarth (https://github.com/Sukarth/VS-Code-Modernized)**
 
-![VS Code Extension](https://img.shields.io/badge/VS_Code-Extension-007ACC?logo=visual-studio-code&logoColor=white)
+[![VS Code Extension](https://img.shields.io/badge/VS_Code-Extension-007ACC)](https://code.visualstudio.com/api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Yohan-Janolin/VS-Code-Modernized-v2)
 
